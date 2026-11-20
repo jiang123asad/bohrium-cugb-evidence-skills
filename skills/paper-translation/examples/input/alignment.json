@@ -1,0 +1,30 @@
+{
+  "segments": [
+    {
+      "id": "S01",
+      "source": "The yield increased by 3.2% under dry conditions.",
+      "locator": "demo.txt L1"
+    },
+    {
+      "id": "S02",
+      "source": "Remote sensing models were compared in the same region.",
+      "locator": "demo.txt L2"
+    }
+  ],
+  "aligned": [
+    {
+      "id": "S01",
+      "target": "干旱条件下产量增加了 32%。"
+    },
+    {
+      "id": "S02",
+      "target": "遥感模型在同一地区进行了比较。"
+    }
+  ],
+  "glossary": [
+    {
+      "source": "remote sensing",
+      "target": "遥感"
+    }
+  ]
+}

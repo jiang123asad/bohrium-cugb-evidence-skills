@@ -1,0 +1,201 @@
+{
+  "source": "sample-two-column.pdf",
+  "source_sha256": "d3ed3d8a9f7bcb13fb58340fdc7f9e8e6464364a355e3b0ce909d90c8bba511a",
+  "page_count": 2,
+  "extracted_pages": [
+    1,
+    2
+  ],
+  "bbox_convention": "x0, top, x1, bottom (PDF pt, top-left)",
+  "backend": "pdfplumber 0.11.10",
+  "pages": [
+    {
+      "pdf_page": 1,
+      "page_label": null,
+      "width": 612,
+      "height": 792,
+      "blocks": [
+        {
+          "text": "1. Introduction",
+          "bbox": [
+            72.0,
+            70.48,
+            148.04,
+            82.48
+          ],
+          "kind": "heading_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B002",
+          "heading_level": 1,
+          "reading_order": 1
+        },
+        {
+          "text": "Layer A left column text begins here with\na sentence that continues on the next line.",
+          "bbox": [
+            72.0,
+            92.86,
+            240.61,
+            113.86
+          ],
+          "kind": "text",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B003",
+          "reading_order": 2
+        },
+        {
+          "text": "1.1. Study area",
+          "bbox": [
+            72.0,
+            132.07,
+            139.82,
+            142.07
+          ],
+          "kind": "heading_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B005",
+          "heading_level": 2,
+          "reading_order": 3
+        },
+        {
+          "text": "The study area covers a small demo region.",
+          "bbox": [
+            72.0,
+            150.86,
+            247.07,
+            159.86
+          ],
+          "kind": "text",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B007",
+          "reading_order": 4
+        },
+        {
+          "text": "Fig. 1. Demo layout of the sample page.",
+          "bbox": [
+            72.0,
+            193.66,
+            213.85,
+            201.66
+          ],
+          "kind": "figure_caption_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B009",
+          "reading_order": 5
+        },
+        {
+          "text": "Layer B right column text is separate and\nmust not be interleaved with the left one.",
+          "bbox": [
+            320.0,
+            92.86,
+            483.58,
+            113.86
+          ],
+          "kind": "text",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B004",
+          "reading_order": 6
+        },
+        {
+          "text": "The right column includes a second paragraph.\nThis paragraph remains after all left-column text.",
+          "bbox": [
+            320.0,
+            132.86,
+            513.07,
+            153.86
+          ],
+          "kind": "text",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B006",
+          "reading_order": 7
+        },
+        {
+          "text": "E = m c2  (1)",
+          "bbox": [
+            320.0,
+            168.86,
+            371.77,
+            177.86
+          ],
+          "kind": "formula_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B008",
+          "reading_order": 8
+        },
+        {
+          "text": "Journal of Demo Studies  Vol. 1",
+          "bbox": [
+            72.0,
+            33.66,
+            184.5,
+            41.66
+          ],
+          "kind": "repeated_margin_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B001",
+          "reading_order": 9,
+          "original_kind": "text"
+        },
+        {
+          "text": "1",
+          "bbox": [
+            72.0,
+            753.66,
+            76.45,
+            761.66
+          ],
+          "kind": "repeated_margin_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0001-B010",
+          "reading_order": 10,
+          "original_kind": "text"
+        }
+      ],
+      "tables": [],
+      "warnings": [],
+      "gutter_pt": 306.0,
+      "needs_visual_review": false
+    },
+    {
+      "pdf_page": 2,
+      "page_label": null,
+      "width": 612,
+      "height": 792,
+      "blocks": [
+        {
+          "text": "Journal of Demo Studies  Vol. 1",
+          "bbox": [
+            72.0,
+            33.66,
+            184.5,
+            41.66
+          ],
+          "kind": "repeated_margin_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0002-B001",
+          "reading_order": 1,
+          "original_kind": "text"
+        },
+        {
+          "text": "2",
+          "bbox": [
+            72.0,
+            753.66,
+            76.45,
+            761.66
+          ],
+          "kind": "repeated_margin_candidate",
+          "method": "pdfminer_textbox",
+          "id": "P0002-B002",
+          "reading_order": 2,
+          "original_kind": "text"
+        }
+      ],
+      "tables": [],
+      "warnings": [
+        "inspect rendered page; OCR only if image text is actually present"
+      ],
+      "gutter_pt": null,
+      "needs_visual_review": true
+    }
+  ]
+}

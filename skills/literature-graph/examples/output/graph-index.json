@@ -1,0 +1,358 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "Random Forest",
+      "type": "method",
+      "aliases": [
+        "RF"
+      ],
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L2",
+          "quote": "We use Random Forest (RF)."
+        }
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "Ridge Fusion",
+      "type": "method",
+      "aliases": [
+        "RF"
+      ],
+      "evidence": [
+        {
+          "file": "paperB.txt",
+          "locator": "L5",
+          "quote": "Ridge Fusion (RF) is proposed."
+        }
+      ]
+    },
+    {
+      "id": "n3",
+      "label": "yield prediction",
+      "type": "task",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L1",
+          "quote": "the task of yield prediction"
+        }
+      ]
+    },
+    {
+      "id": "n4",
+      "label": "Dryland Demo",
+      "type": "dataset",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L3",
+          "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n1",
+      "predicate": "use",
+      "target": "n3",
+      "certainty": "reported",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L2",
+          "quote": "We use Random Forest (RF) for yield prediction."
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "source": "n3",
+      "predicate": "evaluated_on",
+      "target": "n4",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L3",
+          "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+        }
+      ]
+    }
+  ],
+  "adjacency": {
+    "n1": {
+      "in": [],
+      "out": [
+        "e1"
+      ]
+    },
+    "n2": {
+      "in": [],
+      "out": []
+    },
+    "n3": {
+      "in": [
+        "e1"
+      ],
+      "out": [
+        "e2"
+      ]
+    },
+    "n4": {
+      "in": [
+        "e2"
+      ],
+      "out": []
+    }
+  },
+  "alias_index": {
+    "random forest": [
+      "n1"
+    ],
+    "rf": [
+      "n1",
+      "n2"
+    ],
+    "ridge fusion": [
+      "n2"
+    ],
+    "yield prediction": [
+      "n3"
+    ],
+    "dryland demo": [
+      "n4"
+    ]
+  },
+  "ambiguous_aliases": {
+    "rf": [
+      "n1",
+      "n2"
+    ]
+  },
+  "query_results": [
+    {
+      "id": "Q1",
+      "status": "matched",
+      "query": {
+        "id": "Q1",
+        "source": "n1",
+        "predicate": "use",
+        "target": "yield prediction"
+      },
+      "ambiguous_candidates": {},
+      "unknown_roles": [],
+      "node_ids": [
+        "n1",
+        "n3"
+      ],
+      "edge_ids": [
+        "e1"
+      ],
+      "nodes": [
+        {
+          "id": "n1",
+          "label": "Random Forest",
+          "type": "method",
+          "aliases": [
+            "RF"
+          ],
+          "evidence": [
+            {
+              "file": "paperA.txt",
+              "locator": "L2",
+              "quote": "We use Random Forest (RF)."
+            }
+          ]
+        },
+        {
+          "id": "n3",
+          "label": "yield prediction",
+          "type": "task",
+          "evidence": [
+            {
+              "file": "paperA.txt",
+              "locator": "L1",
+              "quote": "the task of yield prediction"
+            }
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "source": "n1",
+          "predicate": "use",
+          "target": "n3",
+          "certainty": "reported",
+          "evidence": [
+            {
+              "file": "paperA.txt",
+              "locator": "L2",
+              "quote": "We use Random Forest (RF) for yield prediction."
+            }
+          ]
+        }
+      ],
+      "scope": "directed single-edge matches only; absence is not evidence of nonexistence"
+    },
+    {
+      "id": "Q2",
+      "status": "ambiguous",
+      "query": {
+        "id": "Q2",
+        "source": "RF"
+      },
+      "ambiguous_candidates": {
+        "source": [
+          "n1",
+          "n2"
+        ]
+      },
+      "unknown_roles": [],
+      "node_ids": [],
+      "edge_ids": [],
+      "nodes": [],
+      "edges": [],
+      "scope": "directed single-edge matches only; absence is not evidence of nonexistence"
+    },
+    {
+      "id": "Q3",
+      "status": "no_match",
+      "query": {
+        "id": "Q3",
+        "source": "n3",
+        "target": "n1"
+      },
+      "ambiguous_candidates": {},
+      "unknown_roles": [],
+      "node_ids": [],
+      "edge_ids": [],
+      "nodes": [],
+      "edges": [],
+      "scope": "directed single-edge matches only; absence is not evidence of nonexistence"
+    },
+    {
+      "id": "Q4",
+      "status": "unknown_entity",
+      "query": {
+        "id": "Q4",
+        "source": "unknown method"
+      },
+      "ambiguous_candidates": {},
+      "unknown_roles": [
+        "source"
+      ],
+      "node_ids": [],
+      "edge_ids": [],
+      "nodes": [],
+      "edges": [],
+      "scope": "directed single-edge matches only; absence is not evidence of nonexistence"
+    },
+    {
+      "id": "Q5",
+      "query": {
+        "id": "Q5",
+        "source": "n1",
+        "path": [
+          {
+            "predicate": "use"
+          },
+          {
+            "predicate": "evaluated_on"
+          }
+        ]
+      },
+      "paths": [
+        {
+          "node_ids": [
+            "n1",
+            "n3",
+            "n4"
+          ],
+          "edge_ids": [
+            "e1",
+            "e2"
+          ],
+          "nodes": [
+            {
+              "id": "n1",
+              "label": "Random Forest",
+              "type": "method",
+              "aliases": [
+                "RF"
+              ],
+              "evidence": [
+                {
+                  "file": "paperA.txt",
+                  "locator": "L2",
+                  "quote": "We use Random Forest (RF)."
+                }
+              ]
+            },
+            {
+              "id": "n3",
+              "label": "yield prediction",
+              "type": "task",
+              "evidence": [
+                {
+                  "file": "paperA.txt",
+                  "locator": "L1",
+                  "quote": "the task of yield prediction"
+                }
+              ]
+            },
+            {
+              "id": "n4",
+              "label": "Dryland Demo",
+              "type": "dataset",
+              "evidence": [
+                {
+                  "file": "paperA.txt",
+                  "locator": "L3",
+                  "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+                }
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "id": "e1",
+              "source": "n1",
+              "predicate": "use",
+              "target": "n3",
+              "certainty": "reported",
+              "evidence": [
+                {
+                  "file": "paperA.txt",
+                  "locator": "L2",
+                  "quote": "We use Random Forest (RF) for yield prediction."
+                }
+              ]
+            },
+            {
+              "id": "e2",
+              "source": "n3",
+              "predicate": "evaluated_on",
+              "target": "n4",
+              "evidence": [
+                {
+                  "file": "paperA.txt",
+                  "locator": "L3",
+                  "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "truncated": false,
+      "scope": "explicit directed paths; no inferred relation or proof of causation",
+      "status": "matched"
+    }
+  ]
+}

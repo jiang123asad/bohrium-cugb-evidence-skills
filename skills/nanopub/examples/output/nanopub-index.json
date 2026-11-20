@@ -1,0 +1,23 @@
+{
+  "nanopublications": {
+    "A01": {
+      "nanopub": "urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2",
+      "head": "urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:head",
+      "assertion": "urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:assertion",
+      "provenance": "urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:provenance",
+      "pubinfo": "urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:pubinfo",
+      "assertion_form": "textual"
+    },
+    "A02": {
+      "nanopub": "urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38",
+      "head": "urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:head",
+      "assertion": "urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:assertion",
+      "provenance": "urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:provenance",
+      "pubinfo": "urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:pubinfo",
+      "assertion_form": "typed_triple"
+    }
+  },
+  "named_graphs": 8,
+  "artifact": "assertions.trig",
+  "published": false
+}

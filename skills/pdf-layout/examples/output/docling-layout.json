@@ -1,0 +1,1303 @@
+{
+  "source": "docling-model.json",
+  "input_sha256": "b0a9cc6d2a4fd7ae78f15f263b9466354123bb8f9f7ebe03f5111a192158025c",
+  "backend": "docling-json (stdlib)",
+  "docling_schema_version": "1.11.0",
+  "page_count": 2,
+  "extracted_pages": [
+    1,
+    2
+  ],
+  "bbox_convention": "x0, top, x1, bottom (source page units, top-left; PDF exports use pt)",
+  "origin": {
+    "mimetype": "application/pdf",
+    "binary_hash": 123456789,
+    "filename": "synthetic-not-a-real-source.pdf"
+  },
+  "origin_verified": false,
+  "body": {
+    "self_ref": "#/body",
+    "children": [
+      {
+        "$ref": "#/groups/0"
+      },
+      {
+        "$ref": "#/pictures/0"
+      },
+      {
+        "$ref": "#/texts/5"
+      },
+      {
+        "$ref": "#/texts/0"
+      }
+    ],
+    "content_layer": "body",
+    "name": "_root_",
+    "label": "unspecified"
+  },
+  "reading_order": [
+    "#/groups/0",
+    "#/texts/1",
+    "#/groups/1",
+    "#/texts/2",
+    "#/tables/0",
+    "#/texts/3",
+    "#/texts/4",
+    "#/pictures/0",
+    "#/texts/5",
+    "#/texts/0"
+  ],
+  "items": [
+    {
+      "label": "unspecified",
+      "name": "synthetic outer",
+      "content_layer": "body",
+      "source_ref": "#/groups/0",
+      "kind": "unspecified",
+      "body_order": 0,
+      "children": [
+        "#/texts/1",
+        "#/groups/1"
+      ],
+      "parent_ref": "#/body",
+      "provenance": [],
+      "locations": [],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "text": "",
+      "needs_visual_review": false
+    },
+    {
+      "text": "1.2 Synthetic methods",
+      "orig": "1.2 Synthetic methods",
+      "label": "section_header",
+      "content_layer": "body",
+      "source_ref": "#/texts/1",
+      "kind": "section_header",
+      "body_order": 1,
+      "children": [],
+      "parent_ref": "#/groups/0",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 40.0,
+            "t": 750.0,
+            "r": 500.0,
+            "b": 730.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            21
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 1,
+          "bbox": [
+            40.0,
+            50.0,
+            500.0,
+            70.0
+          ],
+          "charspan": [
+            0,
+            21
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "heading_level": 2,
+      "needs_visual_review": false
+    },
+    {
+      "label": "unspecified",
+      "name": "synthetic nested",
+      "content_layer": "body",
+      "source_ref": "#/groups/1",
+      "kind": "unspecified",
+      "body_order": 2,
+      "children": [
+        "#/texts/2",
+        "#/tables/0",
+        "#/texts/4"
+      ],
+      "parent_ref": "#/groups/0",
+      "provenance": [],
+      "locations": [],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "text": "",
+      "needs_visual_review": false
+    },
+    {
+      "text": "Alphabeta",
+      "orig": "Alpha\nbeta",
+      "label": "text",
+      "content_layer": "body",
+      "source_ref": "#/texts/2",
+      "kind": "text",
+      "body_order": 3,
+      "children": [],
+      "parent_ref": "#/groups/1",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 40.0,
+            "t": 720.0,
+            "r": 500.0,
+            "b": 700.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        },
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 40.0,
+            "t": 850.0,
+            "r": 500.0,
+            "b": 830.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            6,
+            10
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 1,
+          "bbox": [
+            40.0,
+            80.0,
+            500.0,
+            100.0
+          ],
+          "charspan": [
+            0,
+            6
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        },
+        {
+          "pdf_page": 2,
+          "bbox": [
+            40.0,
+            50.0,
+            500.0,
+            70.0
+          ],
+          "charspan": [
+            6,
+            10
+          ],
+          "provenance_index": 1,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "needs_visual_review": false
+    },
+    {
+      "label": "table",
+      "content_layer": "body",
+      "annotations": [],
+      "source_ref": "#/tables/0",
+      "kind": "table",
+      "body_order": 4,
+      "children": [
+        "#/texts/3"
+      ],
+      "parent_ref": "#/groups/1",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 40.0,
+            "t": 600.0,
+            "r": 340.0,
+            "b": 560.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 1,
+          "bbox": [
+            40.0,
+            200.0,
+            340.0,
+            240.0
+          ],
+          "charspan": [
+            0,
+            0
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [
+        "2 table cells lack a unique page/bbox; no cell placement inferred"
+      ],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "text": "",
+      "caption_refs": [
+        "#/texts/3"
+      ],
+      "reference_refs": [],
+      "footnote_refs": [],
+      "num_rows": 2,
+      "num_cols": 3,
+      "table_cells": [
+        {
+          "bbox": [
+            40.0,
+            200.0,
+            240.0,
+            240.0
+          ],
+          "row_span": 2,
+          "col_span": 2,
+          "start_row_offset_idx": 0,
+          "end_row_offset_idx": 2,
+          "start_col_offset_idx": 0,
+          "end_col_offset_idx": 2,
+          "text": "Merged header",
+          "column_header": true,
+          "row_header": true,
+          "row_section": false,
+          "fillable": false,
+          "source_bbox": {
+            "l": 40.0,
+            "t": 600.0,
+            "r": 240.0,
+            "b": 560.0,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "pdf_page": 1,
+          "mapping_status": "mapped"
+        },
+        {
+          "row_span": 1,
+          "col_span": 1,
+          "start_row_offset_idx": 0,
+          "end_row_offset_idx": 1,
+          "start_col_offset_idx": 2,
+          "end_col_offset_idx": 3,
+          "text": "Value",
+          "column_header": true,
+          "row_header": false,
+          "row_section": false,
+          "fillable": false,
+          "source_bbox": null,
+          "bbox": null,
+          "pdf_page": null,
+          "mapping_status": "unmapped"
+        },
+        {
+          "row_span": 1,
+          "col_span": 1,
+          "start_row_offset_idx": 1,
+          "end_row_offset_idx": 2,
+          "start_col_offset_idx": 2,
+          "end_col_offset_idx": 3,
+          "text": "42",
+          "column_header": false,
+          "row_header": false,
+          "row_section": true,
+          "fillable": false,
+          "source_bbox": null,
+          "bbox": null,
+          "pdf_page": null,
+          "mapping_status": "unmapped"
+        }
+      ],
+      "rows": [
+        [
+          "Merged header",
+          null,
+          "Value"
+        ],
+        [
+          null,
+          null,
+          "42"
+        ]
+      ],
+      "orientation": "rot_0",
+      "rows_convention": "anchor text only; covered/absent slots are null; use table_cells for spans",
+      "needs_visual_review": true
+    },
+    {
+      "text": "Table 1. Synthetic spans.",
+      "orig": "Table 1. Synthetic spans.",
+      "label": "caption",
+      "content_layer": "body",
+      "source_ref": "#/texts/3",
+      "kind": "caption",
+      "body_order": 5,
+      "children": [],
+      "parent_ref": "#/tables/0",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 40.0,
+            "t": 250.0,
+            "r": 500.0,
+            "b": 270.0,
+            "coord_origin": "TOPLEFT"
+          },
+          "charspan": [
+            0,
+            25
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 1,
+          "bbox": [
+            40.0,
+            250.0,
+            500.0,
+            270.0
+          ],
+          "charspan": [
+            0,
+            25
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "caption_of": [
+        "#/tables/0"
+      ],
+      "needs_visual_review": false
+    },
+    {
+      "text": "Unlocated synthetic note.",
+      "orig": "Unlocated synthetic note.",
+      "label": "text",
+      "content_layer": "body",
+      "source_ref": "#/texts/4",
+      "kind": "text",
+      "body_order": 6,
+      "children": [],
+      "parent_ref": "#/groups/1",
+      "provenance": [],
+      "locations": [],
+      "warnings": [
+        "missing provenance; content retained without page/bbox"
+      ],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "needs_visual_review": true
+    },
+    {
+      "label": "picture",
+      "content_layer": "body",
+      "annotations": [],
+      "source_ref": "#/pictures/0",
+      "kind": "picture",
+      "body_order": 7,
+      "children": [],
+      "parent_ref": "#/body",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 40.0,
+            "t": 100.0,
+            "r": 200.0,
+            "b": 200.0,
+            "coord_origin": "TOPLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 2,
+          "bbox": [
+            40.0,
+            100.0,
+            200.0,
+            200.0
+          ],
+          "charspan": [
+            0,
+            0
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [
+        "picture pixels not inspected; caption references only"
+      ],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "text": "",
+      "caption_refs": [
+        "#/texts/5"
+      ],
+      "reference_refs": [],
+      "footnote_refs": [],
+      "image_omitted": true,
+      "needs_visual_review": true
+    },
+    {
+      "text": "Figure 1. Synthetic caption.",
+      "orig": "Figure 1. Synthetic caption.",
+      "label": "caption",
+      "content_layer": "body",
+      "source_ref": "#/texts/5",
+      "kind": "caption",
+      "body_order": 8,
+      "children": [],
+      "parent_ref": "#/body",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": {
+            "l": 40.0,
+            "t": 210.0,
+            "r": 500.0,
+            "b": 230.0,
+            "coord_origin": "TOPLEFT"
+          },
+          "charspan": [
+            0,
+            28
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 2,
+          "bbox": [
+            40.0,
+            210.0,
+            500.0,
+            230.0
+          ],
+          "charspan": [
+            0,
+            28
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "caption_of": [
+        "#/pictures/0"
+      ],
+      "needs_visual_review": false
+    },
+    {
+      "text": "Last in body.",
+      "orig": "Last in body.",
+      "label": "text",
+      "content_layer": "body",
+      "source_ref": "#/texts/0",
+      "kind": "text",
+      "body_order": 9,
+      "children": [],
+      "parent_ref": "#/body",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 40.0,
+            "t": 650.0,
+            "r": 500.0,
+            "b": 670.0,
+            "coord_origin": "TOPLEFT"
+          },
+          "charspan": [
+            0,
+            13
+          ]
+        }
+      ],
+      "locations": [
+        {
+          "pdf_page": 1,
+          "bbox": [
+            40.0,
+            650.0,
+            500.0,
+            670.0
+          ],
+          "charspan": [
+            0,
+            13
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped"
+        }
+      ],
+      "warnings": [],
+      "method": "docling_json",
+      "bbox": null,
+      "pdf_page": null,
+      "needs_visual_review": false
+    }
+  ],
+  "unmapped_items": [
+    {
+      "source_ref": "#/texts/4",
+      "reason": "missing provenance; content retained without page/bbox",
+      "bbox": null,
+      "pdf_page": null,
+      "text": "Unlocated synthetic note."
+    }
+  ],
+  "pages": [
+    {
+      "pdf_page": 1,
+      "width": 600.0,
+      "height": 800.0,
+      "blocks": [
+        {
+          "text": "1.2 Synthetic methods",
+          "orig": "1.2 Synthetic methods",
+          "label": "section_header",
+          "content_layer": "body",
+          "source_ref": "#/texts/1",
+          "kind": "section_header",
+          "body_order": 1,
+          "children": [],
+          "parent_ref": "#/groups/0",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 750.0,
+                "r": 500.0,
+                "b": 730.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                0,
+                21
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                50.0,
+                500.0,
+                70.0
+              ],
+              "charspan": [
+                0,
+                21
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            50.0,
+            500.0,
+            70.0
+          ],
+          "pdf_page": 1,
+          "heading_level": 2,
+          "charspan": [
+            0,
+            21
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "text_basis": "text",
+          "id": "P0001-B001",
+          "needs_visual_review": false
+        },
+        {
+          "text": "Alpha\n",
+          "orig": "Alpha\n",
+          "label": "text",
+          "content_layer": "body",
+          "source_ref": "#/texts/2",
+          "kind": "text",
+          "body_order": 3,
+          "children": [],
+          "parent_ref": "#/groups/1",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 720.0,
+                "r": 500.0,
+                "b": 700.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                0,
+                6
+              ]
+            },
+            {
+              "page_no": 2,
+              "bbox": {
+                "l": 40.0,
+                "t": 850.0,
+                "r": 500.0,
+                "b": 830.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                6,
+                10
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                80.0,
+                500.0,
+                100.0
+              ],
+              "charspan": [
+                0,
+                6
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            },
+            {
+              "pdf_page": 2,
+              "bbox": [
+                40.0,
+                50.0,
+                500.0,
+                70.0
+              ],
+              "charspan": [
+                6,
+                10
+              ],
+              "provenance_index": 1,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            80.0,
+            500.0,
+            100.0
+          ],
+          "pdf_page": 1,
+          "charspan": [
+            0,
+            6
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "text_basis": "orig",
+          "id": "P0001-B002",
+          "needs_visual_review": false
+        },
+        {
+          "text": "Table 1. Synthetic spans.",
+          "orig": "Table 1. Synthetic spans.",
+          "label": "caption",
+          "content_layer": "body",
+          "source_ref": "#/texts/3",
+          "kind": "caption",
+          "body_order": 5,
+          "children": [],
+          "parent_ref": "#/tables/0",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 250.0,
+                "r": 500.0,
+                "b": 270.0,
+                "coord_origin": "TOPLEFT"
+              },
+              "charspan": [
+                0,
+                25
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                250.0,
+                500.0,
+                270.0
+              ],
+              "charspan": [
+                0,
+                25
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            250.0,
+            500.0,
+            270.0
+          ],
+          "pdf_page": 1,
+          "caption_of": [
+            "#/tables/0"
+          ],
+          "charspan": [
+            0,
+            25
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "text_basis": "text",
+          "id": "P0001-B003",
+          "needs_visual_review": false
+        },
+        {
+          "text": "Last in body.",
+          "orig": "Last in body.",
+          "label": "text",
+          "content_layer": "body",
+          "source_ref": "#/texts/0",
+          "kind": "text",
+          "body_order": 9,
+          "children": [],
+          "parent_ref": "#/body",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 650.0,
+                "r": 500.0,
+                "b": 670.0,
+                "coord_origin": "TOPLEFT"
+              },
+              "charspan": [
+                0,
+                13
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                650.0,
+                500.0,
+                670.0
+              ],
+              "charspan": [
+                0,
+                13
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            650.0,
+            500.0,
+            670.0
+          ],
+          "pdf_page": 1,
+          "charspan": [
+            0,
+            13
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "text_basis": "text",
+          "id": "P0001-B004",
+          "needs_visual_review": false
+        }
+      ],
+      "tables": [
+        {
+          "label": "table",
+          "content_layer": "body",
+          "annotations": [],
+          "source_ref": "#/tables/0",
+          "kind": "table",
+          "body_order": 4,
+          "children": [
+            "#/texts/3"
+          ],
+          "parent_ref": "#/groups/1",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 600.0,
+                "r": 340.0,
+                "b": 560.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                0,
+                0
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                200.0,
+                340.0,
+                240.0
+              ],
+              "charspan": [
+                0,
+                0
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [
+            "2 table cells lack a unique page/bbox; no cell placement inferred"
+          ],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            200.0,
+            340.0,
+            240.0
+          ],
+          "pdf_page": 1,
+          "text": "",
+          "caption_refs": [
+            "#/texts/3"
+          ],
+          "reference_refs": [],
+          "footnote_refs": [],
+          "num_rows": 2,
+          "num_cols": 3,
+          "table_cells": [
+            {
+              "bbox": [
+                40.0,
+                200.0,
+                240.0,
+                240.0
+              ],
+              "row_span": 2,
+              "col_span": 2,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 0,
+              "end_col_offset_idx": 2,
+              "text": "Merged header",
+              "column_header": true,
+              "row_header": true,
+              "row_section": false,
+              "fillable": false,
+              "source_bbox": {
+                "l": 40.0,
+                "t": 600.0,
+                "r": 240.0,
+                "b": 560.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "pdf_page": 1,
+              "mapping_status": "mapped"
+            },
+            {
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 0,
+              "end_row_offset_idx": 1,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "Value",
+              "column_header": true,
+              "row_header": false,
+              "row_section": false,
+              "fillable": false,
+              "source_bbox": null,
+              "bbox": null,
+              "pdf_page": null,
+              "mapping_status": "unmapped"
+            },
+            {
+              "row_span": 1,
+              "col_span": 1,
+              "start_row_offset_idx": 1,
+              "end_row_offset_idx": 2,
+              "start_col_offset_idx": 2,
+              "end_col_offset_idx": 3,
+              "text": "42",
+              "column_header": false,
+              "row_header": false,
+              "row_section": true,
+              "fillable": false,
+              "source_bbox": null,
+              "bbox": null,
+              "pdf_page": null,
+              "mapping_status": "unmapped"
+            }
+          ],
+          "rows": [
+            [
+              "Merged header",
+              null,
+              "Value"
+            ],
+            [
+              null,
+              null,
+              "42"
+            ]
+          ],
+          "orientation": "rot_0",
+          "rows_convention": "anchor text only; covered/absent slots are null; use table_cells for spans",
+          "charspan": [
+            0,
+            0
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "id": "P0001-T001",
+          "needs_visual_review": true
+        }
+      ],
+      "reading_order": [
+        "P0001-B001",
+        "P0001-B002",
+        "P0001-T001",
+        "P0001-B003",
+        "P0001-B004"
+      ],
+      "warnings": [
+        "#/tables/0: 2 table cells lack a unique page/bbox; no cell placement inferred"
+      ],
+      "needs_visual_review": true
+    },
+    {
+      "pdf_page": 2,
+      "width": 600.0,
+      "height": 900.0,
+      "blocks": [
+        {
+          "text": "beta",
+          "orig": "beta",
+          "label": "text",
+          "content_layer": "body",
+          "source_ref": "#/texts/2",
+          "kind": "text",
+          "body_order": 3,
+          "children": [],
+          "parent_ref": "#/groups/1",
+          "provenance": [
+            {
+              "page_no": 1,
+              "bbox": {
+                "l": 40.0,
+                "t": 720.0,
+                "r": 500.0,
+                "b": 700.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                0,
+                6
+              ]
+            },
+            {
+              "page_no": 2,
+              "bbox": {
+                "l": 40.0,
+                "t": 850.0,
+                "r": 500.0,
+                "b": 830.0,
+                "coord_origin": "BOTTOMLEFT"
+              },
+              "charspan": [
+                6,
+                10
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 1,
+              "bbox": [
+                40.0,
+                80.0,
+                500.0,
+                100.0
+              ],
+              "charspan": [
+                0,
+                6
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            },
+            {
+              "pdf_page": 2,
+              "bbox": [
+                40.0,
+                50.0,
+                500.0,
+                70.0
+              ],
+              "charspan": [
+                6,
+                10
+              ],
+              "provenance_index": 1,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            50.0,
+            500.0,
+            70.0
+          ],
+          "pdf_page": 2,
+          "charspan": [
+            6,
+            10
+          ],
+          "provenance_index": 1,
+          "mapping_status": "mapped",
+          "text_basis": "orig",
+          "id": "P0002-B001",
+          "needs_visual_review": false
+        },
+        {
+          "label": "picture",
+          "content_layer": "body",
+          "annotations": [],
+          "source_ref": "#/pictures/0",
+          "kind": "picture",
+          "body_order": 7,
+          "children": [],
+          "parent_ref": "#/body",
+          "provenance": [
+            {
+              "page_no": 2,
+              "bbox": {
+                "l": 40.0,
+                "t": 100.0,
+                "r": 200.0,
+                "b": 200.0,
+                "coord_origin": "TOPLEFT"
+              },
+              "charspan": [
+                0,
+                0
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 2,
+              "bbox": [
+                40.0,
+                100.0,
+                200.0,
+                200.0
+              ],
+              "charspan": [
+                0,
+                0
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [
+            "picture pixels not inspected; caption references only"
+          ],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            100.0,
+            200.0,
+            200.0
+          ],
+          "pdf_page": 2,
+          "text": "",
+          "caption_refs": [
+            "#/texts/5"
+          ],
+          "reference_refs": [],
+          "footnote_refs": [],
+          "image_omitted": true,
+          "charspan": [
+            0,
+            0
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "id": "P0002-B002",
+          "needs_visual_review": true
+        },
+        {
+          "text": "Figure 1. Synthetic caption.",
+          "orig": "Figure 1. Synthetic caption.",
+          "label": "caption",
+          "content_layer": "body",
+          "source_ref": "#/texts/5",
+          "kind": "caption",
+          "body_order": 8,
+          "children": [],
+          "parent_ref": "#/body",
+          "provenance": [
+            {
+              "page_no": 2,
+              "bbox": {
+                "l": 40.0,
+                "t": 210.0,
+                "r": 500.0,
+                "b": 230.0,
+                "coord_origin": "TOPLEFT"
+              },
+              "charspan": [
+                0,
+                28
+              ]
+            }
+          ],
+          "locations": [
+            {
+              "pdf_page": 2,
+              "bbox": [
+                40.0,
+                210.0,
+                500.0,
+                230.0
+              ],
+              "charspan": [
+                0,
+                28
+              ],
+              "provenance_index": 0,
+              "mapping_status": "mapped"
+            }
+          ],
+          "warnings": [],
+          "method": "docling_json",
+          "bbox": [
+            40.0,
+            210.0,
+            500.0,
+            230.0
+          ],
+          "pdf_page": 2,
+          "caption_of": [
+            "#/pictures/0"
+          ],
+          "charspan": [
+            0,
+            28
+          ],
+          "provenance_index": 0,
+          "mapping_status": "mapped",
+          "text_basis": "text",
+          "id": "P0002-B003",
+          "needs_visual_review": false
+        }
+      ],
+      "tables": [],
+      "reading_order": [
+        "P0002-B001",
+        "P0002-B002",
+        "P0002-B003"
+      ],
+      "warnings": [
+        "#/pictures/0: picture pixels not inspected; caption references only"
+      ],
+      "needs_visual_review": true
+    }
+  ],
+  "warnings": [
+    "origin is unverified exporter metadata; binary_hash is not input_sha256",
+    "#/tables/0: 2 table cells lack a unique page/bbox; no cell placement inferred",
+    "#/texts/4: missing provenance; content retained without page/bbox",
+    "#/pictures/0: picture pixels not inspected; caption references only"
+  ],
+  "needs_visual_review": true,
+  "media_policy": "No images decoded; no URLs or referenced local files opened."
+}

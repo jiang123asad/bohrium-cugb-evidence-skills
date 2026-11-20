@@ -1,0 +1,22 @@
+{
+  "section_order": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "category_index": {
+    "research_question": [
+      "N01"
+    ],
+    "method": [
+      "N02"
+    ]
+  },
+  "uncovered": [
+    "results",
+    "limitation"
+  ],
+  "unnoted_sections": [
+    "S3"
+  ]
+}

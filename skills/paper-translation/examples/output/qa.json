@@ -1,0 +1,18 @@
+{
+  "expected": 2,
+  "aligned": 2,
+  "issues": [
+    {
+      "id": "S01",
+      "issue": "protected_token_difference",
+      "delta": {
+        "missing": {
+          "3.2%": 1
+        },
+        "added": {
+          "32%": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "Random Forest",
+      "type": "method",
+      "aliases": [
+        "RF"
+      ],
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L2",
+          "quote": "We use Random Forest (RF)."
+        }
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "Ridge Fusion",
+      "type": "method",
+      "aliases": [
+        "RF"
+      ],
+      "evidence": [
+        {
+          "file": "paperB.txt",
+          "locator": "L5",
+          "quote": "Ridge Fusion (RF) is proposed."
+        }
+      ]
+    },
+    {
+      "id": "n3",
+      "label": "yield prediction",
+      "type": "task",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L1",
+          "quote": "the task of yield prediction"
+        }
+      ]
+    },
+    {
+      "id": "n4",
+      "label": "Dryland Demo",
+      "type": "dataset",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L3",
+          "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "Q1",
+      "source": "n1",
+      "predicate": "use",
+      "target": "yield prediction"
+    },
+    {
+      "id": "Q2",
+      "source": "RF"
+    },
+    {
+      "id": "Q3",
+      "source": "n3",
+      "target": "n1"
+    },
+    {
+      "id": "Q4",
+      "source": "unknown method"
+    },
+    {
+      "id": "Q5",
+      "source": "n1",
+      "path": [
+        {
+          "predicate": "use"
+        },
+        {
+          "predicate": "evaluated_on"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n1",
+      "predicate": "use",
+      "target": "n3",
+      "certainty": "reported",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L2",
+          "quote": "We use Random Forest (RF) for yield prediction."
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "source": "n3",
+      "predicate": "evaluated_on",
+      "target": "n4",
+      "evidence": [
+        {
+          "file": "paperA.txt",
+          "locator": "L3",
+          "quote": "Yield prediction was evaluated on the Dryland Demo dataset."
+        }
+      ]
+    }
+  ]
+}
