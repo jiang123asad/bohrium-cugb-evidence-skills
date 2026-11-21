@@ -12,10 +12,59 @@
       "N02"
     ]
   },
+  "inferred_category_index": {},
   "uncovered": [
     "results",
     "limitation"
   ],
+  "category_coverage": [
+    {
+      "category": "research_question",
+      "status": "direct",
+      "direct_ids": [
+        "N01"
+      ],
+      "inference_ids": []
+    },
+    {
+      "category": "method",
+      "status": "direct",
+      "direct_ids": [
+        "N02"
+      ],
+      "inference_ids": []
+    },
+    {
+      "category": "results",
+      "status": "uncovered",
+      "direct_ids": [],
+      "inference_ids": []
+    },
+    {
+      "category": "limitation",
+      "status": "uncovered",
+      "direct_ids": [],
+      "inference_ids": []
+    }
+  ],
+  "section_coverage": {
+    "S1": {
+      "direct": [
+        "N01"
+      ],
+      "inference": []
+    },
+    "S2": {
+      "direct": [
+        "N02"
+      ],
+      "inference": []
+    },
+    "S3": {
+      "direct": [],
+      "inference": []
+    }
+  },
   "unnoted_sections": [
     "S3"
   ]

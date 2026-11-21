@@ -1,6 +1,19 @@
 {
   "expected": 2,
   "aligned": 2,
+  "nonempty_targets": 2,
+  "coverage": [
+    {
+      "id": "S01",
+      "locator": "demo.txt L1",
+      "status": "present"
+    },
+    {
+      "id": "S02",
+      "locator": "demo.txt L2",
+      "status": "present"
+    }
+  ],
   "issues": [
     {
       "id": "S01",

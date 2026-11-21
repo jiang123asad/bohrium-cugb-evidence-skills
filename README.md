@@ -1,4 +1,4 @@
-# Evidence Skills · CUGB Bohrium v5
+# Evidence Skills · CUGB Bohrium · Harbor 交付版
 
 这五个独立 Skill 面向地大分站赛第一期的文献阅读题。每个目录包含可独立加载的 `SKILL.md`、脚本、依赖说明和可复跑合成示例。
 
@@ -10,5 +10,5 @@
 | [nanopub](skills/nanopub) | 构建离线、未签名的 RDF 纳米出版物，并回读命名图 |
 | [literature-graph](skills/literature-graph) | 按证据定义实体和有向边，保留歧义并查询证据链 |
 
-v5 合并两条 v4 的改进：Docling 离线导入、原文引文定位、真实交付文件检查和多跳图谱。原按行检索为默认，BM25 是可选辅助。引用的开源项目、依赖与适用边界见各 Skill；示例为合成材料，不含正式赛例或官方成绩。
+v6 延续原有的 Docling 离线导入、引文定位和查询脚本，在此基础上增加交付契约检查、版面成品反查、译段覆盖、直接证据与推断分流、断言导出审核，以及条件不同的关系回查。按行检索仍是默认，BM25 可按需使用。各 Skill 标明依赖、开源来源和适用范围。示例只用于复跑接口。
 

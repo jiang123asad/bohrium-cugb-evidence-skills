@@ -295,6 +295,38 @@ def matches_text_source(chunk, text):
             and locator.get('line_start') == text.count('\n', 0, a) + 1
             and locator.get('line_end') == text.count('\n', 0, b - 1) + 1)
 
+def draft_coverage(verified, draft):
+    """Audit stable IDs from the finished draft against already checked evidence links."""
+    by_id={c['id']:c for c in verified['claims']}
+    seen=set()
+    rows=[]
+    for row in draft['claims']:
+        key=row['id']
+        if not isinstance(key,str) or not key.strip() or key in seen:
+            raise ValueError('draft claims require unique nonempty IDs')
+        seen.add(key)
+        kind=row['kind']
+        if kind not in {'source_summary','comparison','gap_in_reviewed_sources','own_contribution','author_judgment'}:
+            raise ValueError(f'{key}: invalid claim kind')
+        claim=by_id.get(key)
+        files=sorted({e['file'] for e in claim['evidence'] if e['anchor_valid']}) if claim else []
+        issues=[]
+        if kind!='author_judgment':
+            if not claim or not claim['anchors_valid']:
+                issues.append('missing_or_invalid_evidence')
+            if claim and row['statement'].strip()!=claim['statement'].strip():
+                issues.append('draft_statement_differs_from_ledger')
+        if kind=='comparison' and (len(files)<2 or not row.get('comparison_basis')):
+            issues.append('review_comparability_and_two_source_anchors')
+        if kind=='gap_in_reviewed_sources' and not row.get('reviewed_scope'):
+            issues.append('missing_reviewed_scope')
+        if kind=='author_judgment' and not row.get('judgment_disclosed'):
+            issues.append('label_author_judgment_in_draft')
+        rows.append({'id':key,'kind':kind,'files':files,'issues':issues})
+    return {'claims':rows,'unused_ledger_ids':sorted(set(by_id)-seen),
+            'ok':bool(rows) and not any(r['issues'] for r in rows),
+            'scope':'Literal anchors and traceability only; entailment and fair comparisons still require review.'}
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -308,6 +340,7 @@ def main():
     check = modes.add_parser('verify')
     check.add_argument('root', type=Path); check.add_argument('index', type=Path)
     check.add_argument('ledger', type=Path); check.add_argument('output', type=Path)
+    check.add_argument('--draft',type=Path,help='optional claim manifest extracted from the actual edited draft')
     args = parser.parse_args()
     if args.mode == 'index':
         result = build_index(args.root.resolve(), args.manifest, args.max_chars)
@@ -315,8 +348,11 @@ def main():
         result = search(load(args.index), load(args.queries)['queries'], args.limit, args.per_source)
     else:
         result = verify(args.root.resolve(), load(args.index), load(args.ledger))
+        if args.draft:
+            result['draft_coverage']=draft_coverage(result,load(args.draft))
     save(args.output, result)
-    return int(args.mode == 'verify' and not result['all_anchors_valid'])
+    return int(args.mode == 'verify' and (not result['all_anchors_valid']
+               or ('draft_coverage' in result and not result['draft_coverage']['ok'])))
 
 
 if __name__ == '__main__':

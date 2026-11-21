@@ -46,24 +46,49 @@ def translation(data):
             target_pat=(r'(?<!\w)'+re.escape(target)+r'(?!\w)' if target.isascii() else re.escape(target))
             if re.search(pat,src,re.I) and not re.search(target_pat,dst,re.I):
                 issues.append({'id':k,'issue':'glossary_review','source_term':source,'target_term':target})
-    issues.extend({'id':k,'issue':'unknown_source_id'} for k in aligned.keys()-segments.keys())
-    return {'expected':len(segments),'aligned':len(aligned.keys()&segments.keys()),'issues':issues}
+    issues.extend({'id':k,'issue':'unknown_source_id'} for k in aligned if k not in segments)
+    expected_order=[k for k in segments if k in aligned]
+    if expected_order != [k for k in aligned if k in segments]:
+        issues.append({'issue':'source_order_changed','expected_order':expected_order})
+    coverage=[]
+    for key, segment in segments.items():
+        target=aligned.get(key,{}).get('target','')
+        status='present' if target.strip() else 'missing'
+        coverage.append({'id':key,'locator':segment.get('locator'),'status':status})
+        if not segment.get('locator'):
+            issues.append({'id':key,'issue':'missing_locator'})
+    return {'expected':len(segments),'aligned':len(aligned.keys()&segments.keys()),
+            'nonempty_targets':sum(row['status']=='present' for row in coverage),
+            'coverage':coverage,'issues':issues}
 
 def notes(data):
     index=ids(data['sections'])
     notes=ids(data['notes'])
     reported=defaultdict(list)
+    inferred=defaultdict(list)
+    section_coverage={key:{'direct':[],'inference':[]} for key in index}
     for k,n in notes.items():
         require(n,'section_id','category','claim','evidence')
         for s in n['evidence']:
             require(s,'file','locator','quote')
         if n['section_id'] not in index:
             raise ValueError(f'unknown section for {k}')
-        reported[n['category']].append(k)
+        status=n.get('basis','direct')
+        if status not in {'direct','inference'}:
+            raise ValueError(f'{k}: basis must be direct or inference')
+        if status=='inference':
+            require(n,'reasoning')
+            inferred[n['category']].append(k)
+        else:
+            reported[n['category']].append(k)
+        section_coverage[n['section_id']][status].append(k)
     requested=data.get('required_categories',[])
-    return {'section_order':list(index),'category_index':dict(reported),
+    return {'section_order':list(index),'category_index':dict(reported),'inferred_category_index':dict(inferred),
             'uncovered':[k for k in requested if k not in reported],
-            'unnoted_sections':[k for k in index if all(n['section_id']!=k for n in notes.values())]}
+            'category_coverage':[{'category':k,'status':'direct' if k in reported else 'inference_only' if k in inferred else 'uncovered',
+                                  'direct_ids':reported.get(k,[]),'inference_ids':inferred.get(k,[])} for k in requested],
+            'section_coverage':section_coverage,
+            'unnoted_sections':[k for k,row in section_coverage.items() if not any(row.values())]}
 
 def urikey(*parts):
     return hashlib.sha256(json.dumps(parts,ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:32]
@@ -95,10 +120,15 @@ def nanopub(data, out):
     for prefix,ns in [('np',np),('ev',ev),('prov',PROV),('dct',DCTERMS)]:
         ds.bind(prefix,ns)
     records=ids(data['claims'])
-    if not records:
-        raise ValueError('no supported claims to serialize')
     manifest={}
+    withheld=[]
     for key,c in records.items():
+        state=c.get('support','unreviewed')
+        if state not in {'direct','unreviewed','inference','insufficient','conflict'}:
+            raise ValueError(f'{key}: invalid support status')
+        if state!='direct':
+            withheld.append({'id':key,'support':state,'reason':c.get('reason','requires an explicit direct support review')})
+            continue
         require(c,'statement','evidence')
         source=c['evidence']
         require(source,'file','locator','quote')
@@ -136,6 +166,8 @@ def nanopub(data, out):
         if data.get('creator'): u.add((stem,DCTERMS.creator,Literal(data['creator'])))
         manifest[key]={'nanopub':str(stem),'head':str(head),'assertion':str(ass),'provenance':str(prv),'pubinfo':str(pub),
                        'assertion_form':'typed_triple' if has_triple else 'textual'}
+    if not manifest:
+        return {'nanopublications':{},'withheld':withheld,'named_graphs':0,'artifact':None,'published':False}
     payload=ds.serialize(format='trig')
     reopened=Dataset()
     reopened.parse(data=payload,format='trig')
@@ -144,7 +176,7 @@ def nanopub(data, out):
     if named!=expected or set(ds.quads((None,None,None,None)))!=set(reopened.quads((None,None,None,None))):
         raise ValueError('TriG roundtrip mismatch')
     out.write_text(payload,encoding='utf-8')
-    return {'nanopublications':manifest,'named_graphs':len(named),'artifact':out.name,'published':False}
+    return {'nanopublications':manifest,'withheld':withheld,'named_graphs':len(named),'artifact':out.name,'published':False}
 
 def graph(data):
     nodes,edges=ids(data['nodes']),ids(data['edges'])
@@ -171,6 +203,13 @@ def graph(data):
             'ambiguous_aliases':{k:sorted(v) for k,v in labels.items() if len(v)>1}}
     if 'queries' in data:
         result['query_results']=query_graph(result,data['queries'])
+        result['query_summary']=dict(Counter(row['status'] for row in result['query_results']))
+    paired=defaultdict(list)
+    for e in edges.values():
+        paired[(e['source'],e['target'],e['predicate'])].append(e)
+    result['relation_variants']=[{'source':s,'target':t,'predicate':p,'edge_ids':[e['id'] for e in group]}
+        for (s,t,p),group in paired.items()
+        if len({json.dumps([e.get('qualifiers',{}),e.get('polarity')],sort_keys=True) for e in group})>1]
     return result
 
 def query_graph(index, queries):
@@ -295,8 +334,25 @@ def citations(data):
             if ref not in numbers: numbers[ref]=len(numbers)+1
             if numbers[ref] not in seq: seq.append(numbers[ref])
         out.append({'id':k,'source_keys':cluster['reference_ids'],'numbers':sorted(seq)})
-    return {'clusters':out,'bibliography':[dict(refs[k],number=n) for k,n in numbers.items()],
+    result={'clusters':out,'bibliography':[dict(refs[k],number=n) for k,n in numbers.items()],
             'unused_canonical_ids':[k for k in refs if k not in remap and k not in numbers]}
+    if 'observed' in data:
+        obs=data['observed']
+        observed=ids(obs['clusters'])
+        expected={row['id']:row['numbers'] for row in out}
+        discrepancies=[]
+        for k in dict.fromkeys([*expected,*observed]):
+            actual=observed[k]['numbers'] if k in observed else None
+            if k not in expected or k not in observed or actual!=expected[k]:
+                discrepancies.append({'kind':'body_cluster','id':k,'expected':expected.get(k),'observed':actual})
+        if list(observed)!=list(expected):
+            discrepancies.append({'kind':'body_order','expected':list(expected),'observed':list(observed)})
+        actual_bib=[{'id':r['id'],'number':r['number']} for r in obs['bibliography']]
+        expected_bib=[{'id':k,'number':n} for k,n in numbers.items()]
+        if actual_bib!=expected_bib:
+            discrepancies.append({'kind':'bibliography','expected':expected_bib,'observed':actual_bib})
+        result['rendered_audit']={'ok':not discrepancies,'discrepancies':discrepancies}
+    return result
 
 def reconcile(data):
     """Flag differing values without resolving experiment identity or source authority."""
@@ -306,10 +362,23 @@ def reconcile(data):
         if 'value' not in f: raise ValueError('value field missing')
         slots[(f['run'],f['parameter'])].append(f)
     disagreements=[]
+    conflict_keys=set()
     for (run,param),facts in slots.items():
         if len({(json.dumps(f['value'],sort_keys=True,ensure_ascii=False),f.get('unit','')) for f in facts})>1:
             disagreements.append({'run':run,'parameter':param,'observations':facts})
-    return {'facts':data['facts'],'groups':len(slots),'review_conflicts':disagreements}
+            conflict_keys.add((run,param))
+    coverage=[]
+    for run,row in ids(data.get('required_runs',[])).items():
+        fields=[]
+        for param in dict.fromkeys(row['parameters']):
+            records=slots.get((run,param),[])
+            layers=Counter(f.get('basis','source_unspecified') for f in records)
+            state='conflict' if (run,param) in conflict_keys else 'documented' if records else 'missing'
+            fields.append({'parameter':param,'status':state,'source_kinds':dict(layers),
+                           'observations':records})
+        coverage.append({'run':run,'fields':fields})
+    return {'facts':data['facts'],'groups':len(slots),'review_conflicts':disagreements,
+            'run_coverage':coverage,'execution_verified_by_this_check':False}
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

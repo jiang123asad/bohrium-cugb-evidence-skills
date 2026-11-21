@@ -256,7 +256,7 @@ def contract_schema(contract):
     if isinstance(contract,dict) and SCHEMA_KEYS.intersection(contract):
         return contract
     if isinstance(contract,dict):
-        for key in ('required_fields','fields','output_fields'):
+        for key in ('schema','json_schema','required_fields','fields','output_fields'):
             if isinstance(contract.get(key),(dict,list)):
                 return contract_schema(contract[key])
         meta={'description','required_artifacts','artifacts','notes','files','format','output_path'}
@@ -350,6 +350,26 @@ def check(case, result):
         issues.append(f'schema validation unavailable: {type(exc).__name__}: {exc}')
     return issues
 
+def result_delivery(case, result, directory, explicit=()):
+    """Validate files named by explicit declarations; never infer paths from prose."""
+    issues=check(case,result)
+    names=list(explicit)
+    contract=case.get('output_contract') if isinstance(case,dict) else None
+    if isinstance(contract,dict) and 'required_artifacts' in contract:
+        entries=contract['required_artifacts']
+        if not isinstance(entries,list):
+            issues.append('required_artifacts needs manual interpretation: pass concrete output paths via --artifact')
+        else:
+            for i,entry in enumerate(entries):
+                path=entry if isinstance(entry,str) else entry.get('path') if isinstance(entry,dict) else None
+                if not isinstance(path,str) or not path.strip():
+                    issues.append(f'required_artifacts[{i}]: no concrete path; review task.md')
+                else:
+                    names.append(path)
+    artifacts=check_artifacts(directory,names)
+    issues.extend(f"{r['path']}: {r['issue']}" for r in artifacts if not r['ok'])
+    return {'ok':not issues,'issues':issues,'artifacts':artifacts}
+
 def protected(text):
     """Diagnostics only: scientific tokens; identifiers can be intentionally renumbered."""
     text=unicodedata.normalize('NFC',text)
@@ -383,11 +403,9 @@ def main():
     elif a.cmd=='quotes': data=quotes(a.root,a.claims,[load(p) for p in a.layout_index])
     elif a.cmd=='compare': data=delta(read(a.before),read(a.after))
     else:
-        issues=check(load(a.case),load(a.result))
-        artifacts=check_artifacts(a.result.parent,a.artifact)
-        issues.extend(f"{r['path']}: {r['issue']}" for r in artifacts if not r['ok'])
-        print(json.dumps({'ok':not issues,'issues':issues,'artifacts':artifacts},ensure_ascii=False))
-        return bool(issues)
+        report=result_delivery(load(a.case),load(a.result),a.result.parent,a.artifact)
+        print(json.dumps(report,ensure_ascii=False))
+        return not report['ok']
     print(json.dumps(data,ensure_ascii=False,indent=2))
     return int(a.cmd=='quotes' and any(not r['verified'] for r in data))
 

@@ -354,5 +354,12 @@
       "scope": "explicit directed paths; no inferred relation or proof of causation",
       "status": "matched"
     }
-  ]
+  ],
+  "query_summary": {
+    "matched": 2,
+    "ambiguous": 1,
+    "no_match": 1,
+    "unknown_entity": 1
+  },
+  "relation_variants": []
 }

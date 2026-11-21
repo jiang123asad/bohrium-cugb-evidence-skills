@@ -17,14 +17,24 @@
           "Demo Author"
         ],
         "year": "2026"
-      }
+      },
+      "support": "direct"
     },
     {
       "id": "A02",
       "statement": "The demo region was observed for one season.",
-      "subject": {"type": "uri", "value": "urn:example:demo-region"},
-      "predicate": {"type": "uri", "value": "urn:example:observed-seasons"},
-      "object": {"type": "literal", "value": 1},
+      "subject": {
+        "type": "uri",
+        "value": "urn:example:demo-region"
+      },
+      "predicate": {
+        "type": "uri",
+        "value": "urn:example:observed-seasons"
+      },
+      "object": {
+        "type": "literal",
+        "value": 1
+      },
       "evidence": {
         "file": "demo.txt",
         "locator": "L4",
@@ -34,7 +44,14 @@
           "Demo Author"
         ],
         "year": "2026"
-      }
+      },
+      "support": "direct"
+    },
+    {
+      "id": "A03",
+      "statement": "The result generalizes to all seasons.",
+      "support": "insufficient",
+      "reason": "The example only reports one observed season."
     }
   ]
 }

@@ -6,10 +6,16 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:provenance> {
-    <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:assertion> prov:wasDerivedFrom <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:passage> .
+<urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:pubinfo> {
+    <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63> dct:created "2026-11-19" ;
+        ev:generator "scholarly-evidence-nanopub/1.0" ;
+        ev:publicationStatus "unsigned local artifact" .
+}
 
-    <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:passage> rdf:value "A exceeded B in clear-sky samples." ;
+<urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:provenance> {
+    <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:assertion> prov:wasDerivedFrom <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:passage> .
+
+    <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:passage> rdf:value "A exceeded B in clear-sky samples." ;
         prov:wasDerivedFrom <urn:scholarly-evidence:source:52145a8087d8c9d9291034ae25a42552> ;
         ev:locator "L3" .
 
@@ -19,27 +25,29 @@
         ev:inputFile "demo.txt" .
 }
 
-<urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:head> {
-    <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38> a np:Nanopublication ;
-        np:hasAssertion <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:assertion> ;
-        np:hasProvenance <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:provenance> ;
-        np:hasPublicationInfo <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:pubinfo> .
+<urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:pubinfo> {
+    <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4> dct:created "2026-11-19" ;
+        ev:generator "scholarly-evidence-nanopub/1.0" ;
+        ev:publicationStatus "unsigned local artifact" .
 }
 
-<urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:assertion> {
-    <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:claim> a ev:Assertion ;
-        rdf:object 1 ;
-        rdf:predicate ns1:observed-seasons ;
-        rdf:subject ns1:demo-region ;
-        rdf:value "The demo region was observed for one season." .
-
-    ns1:demo-region ns1:observed-seasons 1 .
+<urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:head> {
+    <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63> a np:Nanopublication ;
+        np:hasAssertion <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:assertion> ;
+        np:hasProvenance <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:provenance> ;
+        np:hasPublicationInfo <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:pubinfo> .
 }
 
-<urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:provenance> {
-    <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:assertion> prov:wasDerivedFrom <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:passage> .
+<urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:assertion> {
+    <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:claim> a ev:Assertion ;
+        rdf:value "In clear-sky samples, treatment A exceeded treatment B." ;
+        ev:qualifiers "{\"condition\": \"clear-sky samples only\"}" .
+}
 
-    <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:passage> rdf:value "Observations covered one season." ;
+<urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:provenance> {
+    <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:assertion> prov:wasDerivedFrom <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:passage> .
+
+    <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:passage> rdf:value "Observations covered one season." ;
         prov:wasDerivedFrom <urn:scholarly-evidence:source:52145a8087d8c9d9291034ae25a42552> ;
         ev:locator "L4" .
 
@@ -49,28 +57,20 @@
         ev:inputFile "demo.txt" .
 }
 
-<urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:assertion> {
-    <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:claim> a ev:Assertion ;
-        rdf:value "In clear-sky samples, treatment A exceeded treatment B." ;
-        ev:qualifiers "{\"condition\": \"clear-sky samples only\"}" .
+<urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:head> {
+    <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4> a np:Nanopublication ;
+        np:hasAssertion <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:assertion> ;
+        np:hasProvenance <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:provenance> ;
+        np:hasPublicationInfo <urn:scholarly-evidence:nanopub:69de12531f0b018368e0904b0d99dce4:pubinfo> .
 }
 
-<urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38:pubinfo> {
-    <urn:scholarly-evidence:nanopub:be1195823f914d20aab8adeabc08af38> dct:created "2026-11-19" ;
-        ev:generator "scholarly-evidence-nanopub/1.0" ;
-        ev:publicationStatus "unsigned local artifact" .
-}
+<urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:assertion> {
+    <urn:scholarly-evidence:nanopub:9bab4a36beadb16e6f769bc83b1b6f63:claim> a ev:Assertion ;
+        rdf:object 1 ;
+        rdf:predicate ns1:observed-seasons ;
+        rdf:subject ns1:demo-region ;
+        rdf:value "The demo region was observed for one season." .
 
-<urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:pubinfo> {
-    <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2> dct:created "2026-11-19" ;
-        ev:generator "scholarly-evidence-nanopub/1.0" ;
-        ev:publicationStatus "unsigned local artifact" .
-}
-
-<urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:head> {
-    <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2> a np:Nanopublication ;
-        np:hasAssertion <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:assertion> ;
-        np:hasProvenance <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:provenance> ;
-        np:hasPublicationInfo <urn:scholarly-evidence:nanopub:b93afd245047ca15013e54ad807bd8e2:pubinfo> .
+    ns1:demo-region ns1:observed-seasons 1 .
 }
 

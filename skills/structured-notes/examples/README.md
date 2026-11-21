@@ -3,7 +3,7 @@
 输入：`input/notes-model.json`，三节章节树、两条带证据锚点的笔记，required_categories 含 results 与 limitation。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/structured.py" notes examples/input/notes-model.json notes-index.json
 ```
 

@@ -4,7 +4,7 @@
 PDF 为二进制，按平台纯文本资源约定不随包分发；先运行生成脚本（需 pymupdf）。
 
 ```bash
-S=/skills/weekly-skill/scripts   # 本地复跑时改为实际 scripts 目录
+S=./scripts # 在本 Skill 根目录运行
 python examples/input/make_sample_pdf.py        # 生成 sample-two-column.pdf
 python "$S/layout.py" sample-two-column.pdf layout.json --tables
 ```

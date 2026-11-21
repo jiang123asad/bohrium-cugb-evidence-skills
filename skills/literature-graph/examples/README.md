@@ -3,7 +3,7 @@
 输入：`input/graph-model.json`，两篇论文各自定义缩写 RF（Random Forest / Ridge Fusion），一条 use 边和一条 evaluated_on 边；两份原文同在 input。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/structured.py" graph examples/input/graph-model.json graph-index.json
 ```
 

@@ -3,7 +3,7 @@
 输入：`input/alignment.json`，两段原文与译文，其中 S01 故意把 `3.2%` 误译为 `32%`，术语表含 remote sensing→遥感。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/structured.py" translation examples/input/alignment.json qa.json
 ```
 

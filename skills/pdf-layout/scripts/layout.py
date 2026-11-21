@@ -499,13 +499,57 @@ def main(argv=None):
         p.add_argument('pdf', type=Path); p.add_argument('output', type=Path)
         p.add_argument('--pages', type=int, nargs='+'); p.add_argument('--tables', action='store_true')
         p.add_argument('--format', choices=('pdf', 'docling'), default='pdf')
+        p.add_argument('--coverage', type=Path, help='optional coverage report for the extracted pages')
+        p.add_argument('--delivered',type=Path,help='actual delivered element ID lists, requires --coverage')
         a = p.parse_args(argv)
+        if a.delivered and not a.coverage:
+            p.error('--delivered requires --coverage')
         data = import_docling(a.pdf, a.pages) if a.format == 'docling' else extract(a.pdf, a.pages, a.tables)
         save(a.output, data)
+        if a.coverage:
+            from core import load
+            report=coverage(data, load(a.delivered) if a.delivered else None)
+            save(a.coverage, report)
+            if a.delivered and not report['delivery_audit']['ok']:
+                return 1
         return 0
     except Exception as exc:
         print(json.dumps({'error': type(exc).__name__, 'detail': str(exc)[:500]}, ensure_ascii=True), file=sys.stderr)
         return 2
+
+def coverage(data, delivered=None):
+    pages=[]
+    for p in data['pages']:
+        physical=p['pdf_page']
+        blocks=p['blocks']
+        margin=[b['id'] for b in blocks if b['kind']=='repeated_margin_candidate']
+        review=p.get('needs_visual_review',False) or not blocks
+        pages.append({'pdf_page':physical,'page_label':p.get('page_label'),
+                      'reading_ids':[b['id'] for b in blocks if b['id'] not in margin],
+                      'margin_candidates':margin,'tables':[t['id'] for t in p.get('tables',[])],
+                      'mode':'gutter' if p.get('gutter_pt') is not None else 'no_inferred_gutter',
+                      'status':'review' if review else 'extracted',
+                      'warnings':p.get('warnings',[])})
+    result={'pages':pages,'needs_review_pages':[p['pdf_page'] for p in pages if p['status']=='review'],
+            'scope':'Inventory of extracted pages and elements only; not proof that every original glyph was captured.'}
+    if delivered is not None:
+        audit=[]
+        for key in ('blocks','tables'):
+            observed=delivered[key]
+            if not isinstance(observed,list) or not all(isinstance(i,str) for i in observed):
+                raise ValueError(f'delivered {key} must be a list of element IDs')
+            column='reading_ids' if key=='blocks' else 'tables'
+            expected=[i for p in pages for i in p[column]]
+            margins={i for p in pages for i in p['margin_candidates']} if key=='blocks' else set()
+            known=set(expected)
+            seen=set(observed)
+            audit.append({'kind':key,'missing':[i for i in expected if i not in seen],
+                          'unknown':sorted(seen-known-margins),
+                          'duplicates':[i for i,n in Counter(observed).items() if n>1],
+                          'block_order_changed':key=='blocks' and [i for i in observed if i in known]!=[i for i in expected if i in seen]})
+        result['delivery_audit']={'checks':audit,'ok':not any(any(v for k,v in row.items() if k!='kind') for row in audit)}
+    return result
+
 
 if __name__=='__main__':
     sys.exit(main())
