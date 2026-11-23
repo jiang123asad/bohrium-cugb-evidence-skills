@@ -1,0 +1,25 @@
+{
+  "facts": [
+    {
+      "run": "r1",
+      "parameter": "learning_rate",
+      "value": 0.01,
+      "file": "config.yaml",
+      "locator": "L3"
+    },
+    {
+      "run": "r1",
+      "parameter": "learning_rate",
+      "value": 0.005,
+      "file": "train.log",
+      "locator": "L12"
+    },
+    {
+      "run": "r1",
+      "parameter": "epochs",
+      "value": 50,
+      "file": "config.yaml",
+      "locator": "L4"
+    }
+  ]
+}

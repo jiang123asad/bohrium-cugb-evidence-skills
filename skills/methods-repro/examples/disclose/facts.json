@@ -1,0 +1,8 @@
+{
+  "facts": [
+    {"run": "r1", "parameter": "lr", "value": "0.01", "unit": "", "file": "config.yaml", "locator": "L8", "basis": "config"},
+    {"run": "r1", "parameter": "lr", "value": "0.005", "unit": "", "file": "train.log", "locator": "L120", "basis": "log"},
+    {"run": "r1", "parameter": "batch", "value": "64", "unit": "samples", "file": "config.yaml", "locator": "L9", "basis": "config"},
+    {"run": "r1", "parameter": "epoch", "value": "30", "unit": "epochs", "file": "train.log", "locator": "L3", "basis": "log"}
+  ]
+}

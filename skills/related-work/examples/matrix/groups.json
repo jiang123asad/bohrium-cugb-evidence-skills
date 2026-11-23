@@ -1,0 +1,8 @@
+{
+  "groups": [
+    {"name": "迁移类方法", "dimension": "跨地区泛化", "basis": "同一 F1 指标、单区域训练跨区域测试",
+     "sources": ["wang2021", "li2022"]},
+    {"name": "基线", "dimension": "单区域性能", "basis": "",
+     "sources": ["chen2020"]}
+  ]
+}

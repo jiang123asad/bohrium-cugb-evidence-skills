@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "file": "source.txt",
+      "sha256": "22f0f464ad94f28310d35c7c14ce739968920b220ea7f349d36e26e0fe1dda09"
+    }
+  ],
+  "chunks": [
+    {
+      "quote": "Prior work compared two models in one region only.\nNo cross-region validation was reported.",
+      "kind": "text",
+      "section_path": [],
+      "locator": {
+        "line_start": 1,
+        "line_end": 2,
+        "char_start": 0,
+        "char_end": 91
+      },
+      "id": "E0c3c6b3c23d681e8b54f1eb1",
+      "file": "source.txt",
+      "source_sha256": "22f0f464ad94f28310d35c7c14ce739968920b220ea7f349d36e26e0fe1dda09",
+      "quote_sha256": "88e09581e8b4f1cd206a77691b06f76230b845cb28e5ca8400d93f4a40849161"
+    }
+  ],
+  "warnings": [],
+  "scope": "Explicit local sources only; extracted text and source hashes are not proof of scientific support."
+}

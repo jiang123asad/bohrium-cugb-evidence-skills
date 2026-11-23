@@ -1,0 +1,16 @@
+{
+  "terms": [
+    {
+      "canonical": "perovskite solar cell",
+      "variants": ["perovskite photovoltaic"],
+      "abbr": "PSC",
+      "definition": "perovskite solar cell (PSC)"
+    },
+    {
+      "canonical": "power conversion efficiency",
+      "variants": ["photoelectric conversion efficiency"],
+      "abbr": "PCE",
+      "definition": "power conversion efficiency (PCE)"
+    }
+  ]
+}

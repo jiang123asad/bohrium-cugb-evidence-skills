@@ -1,0 +1,28 @@
+{
+  "references": [
+    {
+      "id": "demoA",
+      "title": "A Demo Study of Yield"
+    },
+    {
+      "id": "demoB",
+      "title": "Remote Sensing Revisited"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "c1",
+      "reference_ids": [
+        "demoB"
+      ]
+    },
+    {
+      "id": "c2",
+      "reference_ids": [
+        "demoA",
+        "demoB"
+      ]
+    }
+  ],
+  "confirmed_aliases": {}
+}

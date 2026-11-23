@@ -1,0 +1,42 @@
+{
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "The source does not report cross-region validation.",
+      "anchors_valid": true,
+      "evidence": [
+        {
+          "chunk_id": "E0c3c6b3c23d681e8b54f1eb1",
+          "anchor_valid": true,
+          "reason": null,
+          "file": "source.txt",
+          "locator": {
+            "line_start": 1,
+            "line_end": 2,
+            "char_start": 0,
+            "char_end": 91
+          },
+          "basis": "source_characters"
+        }
+      ],
+      "semantic_support": "not_assessed"
+    }
+  ],
+  "all_anchors_valid": true,
+  "scope": "Checks source hashes and literal excerpts. Plain text is replayed from original characters; layout excerpts are checked against the index, not the page image. No semantic support is assessed.",
+  "draft_coverage": {
+    "claims": [
+      {
+        "id": "C1",
+        "kind": "source_summary",
+        "files": [
+          "source.txt"
+        ],
+        "issues": []
+      }
+    ],
+    "unused_ledger_ids": [],
+    "ok": true,
+    "scope": "Literal anchors and traceability only; entailment and fair comparisons still require review."
+  }
+}

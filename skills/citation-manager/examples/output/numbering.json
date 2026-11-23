@@ -1,0 +1,37 @@
+{
+  "clusters": [
+    {
+      "id": "c1",
+      "source_keys": [
+        "demoB"
+      ],
+      "numbers": [
+        1
+      ]
+    },
+    {
+      "id": "c2",
+      "source_keys": [
+        "demoA",
+        "demoB"
+      ],
+      "numbers": [
+        1,
+        2
+      ]
+    }
+  ],
+  "bibliography": [
+    {
+      "id": "demoB",
+      "title": "Remote Sensing Revisited",
+      "number": 1
+    },
+    {
+      "id": "demoA",
+      "title": "A Demo Study of Yield",
+      "number": 2
+    }
+  ],
+  "unused_canonical_ids": []
+}

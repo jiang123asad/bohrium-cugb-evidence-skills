@@ -1,0 +1,2 @@
+Prior work compared two models in one region only.
+No cross-region validation was reported.

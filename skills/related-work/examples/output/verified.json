@@ -1,0 +1,14 @@
+[
+  {
+    "index": 0,
+    "verified": true,
+    "reason": null,
+    "basis": "source_lines"
+  },
+  {
+    "index": 1,
+    "verified": false,
+    "reason": "quote_not_in_range",
+    "basis": "source_lines"
+  }
+]

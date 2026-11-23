@@ -1,0 +1,32 @@
+{
+  "np": {
+    "id": "urn:scholarly-evidence:nanopub:demo:check",
+    "assertion": [
+      {
+        "s": "urn:example:demo-region",
+        "p": "urn:example:observed-seasons",
+        "o": 1,
+        "o_type": "literal",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      },
+      {
+        "s": "urn:example:demo-sample",
+        "p": "urn:example:condition",
+        "o": "clear-sky",
+        "o_type": "literal",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "provenance": {
+      "assertedBy": "urn:agent:demo",
+      "generatedAt": "2026-11-19T10:00:00+08:00",
+      "sources": [
+        "demo.txt"
+      ]
+    },
+    "pubinfo": {
+      "createdBy": "urn:agent:demo",
+      "createdAt": "2026-11-19T02:00:00Z"
+    }
+  }
+}

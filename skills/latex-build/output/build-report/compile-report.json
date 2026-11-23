@@ -1,0 +1,35 @@
+{
+  "built_pdf": true,
+  "status": "built_without_known_reference_warnings",
+  "engine_requested": "xelatex",
+  "tool_version": "tectonic 0.15.0Tectonic 0.15.0",
+  "commands": [
+    [
+      "tectonic",
+      "--only-cached",
+      "--keep-logs",
+      "--outdir",
+      ".",
+      "./main.tex"
+    ]
+  ],
+  "return_code": 0,
+  "diagnostics": [
+    {
+      "log_line": 3,
+      "message": "note: Rerunning TeX because \"main.aux\" changed ..."
+    }
+  ],
+  "input_sha256": {
+    "main.tex": "9658ba62d441c84165a5dc2919bdcb0738de22b6c68db3107aba70ef2a8733ba"
+  },
+  "build_base": "root",
+  "compiled_sha256": "2eb668c8938cc69c953ec08c68029cdb146aaefc634fe5fd5398738493695d4b",
+  "unresolved_final_log": false,
+  "strict_reference_check": true,
+  "artifacts": [
+    "compile-report.json",
+    "compile.log",
+    "compiled.pdf"
+  ]
+}

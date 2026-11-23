@@ -1,0 +1,2 @@
+pybtex>=0.25.1
+jsonschema>=4.23,<5

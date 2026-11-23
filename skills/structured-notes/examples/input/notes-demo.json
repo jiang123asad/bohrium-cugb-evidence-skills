@@ -1,0 +1,7 @@
+{
+  "notes": [
+    {"id": "N1", "file": "notes-source.md", "claim": "界面钝化降低非辐射复合损失", "quote": "界面钝化能显著降低非辐射复合损失"},
+    {"id": "N2", "file": "notes-source.md", "claim": "封装与组分共同决定稳定性", "quote": "封装工艺与组分工程共同决定器件的长期运行稳定性"},
+    {"id": "N3", "file": "notes-source.md", "claim": "效率超过 26%", "quote": "认证效率超过 26%"}
+  ]
+}

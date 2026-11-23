@@ -20,8 +20,9 @@ description: "Split paper conclusions into atomic truth-evaluable assertions bou
 1. 读取原文和任务；抽取可单独判断真假的原子断言。将不同对象、处理、方向、结果或条件拆开；保留比较组、单位、适用范围和作者模态。矛盾结果分别记录；文献引用别人工作、作者推测和本研究实证须区分。
 2. 为每条断言选实际支持它的最短完整证据，包含必要条件；简单断言可取一句，跨表头和单元格的证据保留组合定位并忠实转录。记录题名、作者、年份、DOI、版本等，仅有来源支持时写入。未找到支持的候选留在待核列表，不发布到 assertion。
 3. 如需 TriG，构建 `{scope_id,claims:[{id,statement,support,qualifiers,evidence:{file,locator,quote,title,authors,year,doi,version}}]}`。每条 claim 可选 subject/predicate/object；提供任一项就必须三项齐备，URI 项须显式写为 `{type:"uri",value:绝对URI}`。仅 object 可用 `{type:"literal",value:JSON标量,datatype?:绝对URI,language?:语言}`，datatype 与 language 互斥。
-   在正式材料验收后执行 `python "$S/structured.py" nanopub /app/work/claims.json /app/work/nanopub-index.json --trig /app/output/assertions.trig`。脚本用 RDFLib 生成每条独立 Head/Assertion/Provenance/PublicationInfo 并逐个命名图核对完整 RDF 四元组；三项齐备时写入真实 RDF 三元组，同时保留文本断言及限定条件。local URN 受整个 claim 内容影响，是可复现、未签名未发布的本地 artifact 标识，不是在线永久 URI。若 contract 要 JSON-LD/指定谓词/多份文件，按实际要求导出和逐个命名图核对完整 RDF 四元组；不要把默认格式覆盖题面。
-4. 逐条对照“断言→原文跨度→版本”，确保没有把局部样本变成普遍事实。需要时间戳、作者或许可证时使用给出的真实值，来源没有提供就明确缺口；不签名、不发布、不声称正式注册。
+   在正式材料验收后执行 `python "$S/structured.py" nanopub /app/work/claims.json /app/work/nanopub-index.json --trig /app/output/assertions.trig.txt`（内容为 TriG，扩展名用 .txt 以符合提交包的文件类型白名单）。脚本用 RDFLib 生成每条独立 Head/Assertion/Provenance/PublicationInfo 并逐个命名图核对完整 RDF 四元组；三项齐备时写入真实 RDF 三元组，同时保留文本断言及限定条件。local URN 受整个 claim 内容影响，是可复现、未签名未发布的本地 artifact 标识，不是在线永久 URI。若 contract 要 JSON-LD/指定谓词/多份文件，按实际要求导出和逐个命名图核对完整 RDF 四元组；不要把默认格式覆盖题面。
+4. 发布前把四图内容保存为 `/app/work/nanopub.json`，运行 `python "$S/nanocheck.py" /app/work/nanopub.json /app/work/nanocheck.json`：先核对四图结构，再核对模板必填字段与 ISO 8601 时间戳，最后复算断言三元组的确定性 SHA256（本地 trusty-URI 替代，不签名、不代表在线注册）。只要 `publishable` 为 false（存在任一 `fail`），就按 `checks` 的 `detail` 修复后重跑，不得带缺陷发布；`warn` 项须在结果中说明。哈希按排序、每行一条三元组的规范文本计算，`summary.assertion_hash_lines` 给出可复现的输入行数，需要复核时加 `--hash-input` 导出该文本。
+5. 逐条对照“断言→原文跨度→版本”，确保没有把局部样本变成普遍事实。需要时间戳、作者或许可证时使用给出的真实值，来源没有提供就明确缺口；不签名、不发布、不声称正式注册。
 
 示例（非赛例）：“晴天样本中 A 高于 B”是一条；“所以所有季节均如此”无充分证据，应留在边界说明。
 

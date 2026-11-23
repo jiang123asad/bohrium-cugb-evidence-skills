@@ -1,0 +1,43 @@
+[
+  {
+    "id": "zhang2023",
+    "type": "article",
+    "fields": {
+      "title": "钙钛矿太阳能电池界面钝化研究进展",
+      "author": "Zhang, San and Li, Wei",
+      "journal": "物理学报",
+      "year": "2023",
+      "volume": "72",
+      "number": "14",
+      "pages": "148701",
+      "doi": "10.1000/demo.2023.001"
+    }
+  },
+  {
+    "id": "li2022",
+    "type": "article",
+    "fields": {
+      "title": "Machine learning potentials for molecular dynamics of halide perovskites",
+      "author": "Li, Na and Zhao, Qiang",
+      "journal": "Computational Materials Today",
+      "year": "2022",
+      "volume": "15",
+      "pages": "100321",
+      "doi": "10.1000/demo.2022.777"
+    }
+  },
+  {
+    "id": "sun2020",
+    "type": "article",
+    "fields": {
+      "title": "Encapsulation strategies for long-term stability of perovskite modules",
+      "author": "Sun, Li and Xu, Bo and Ma, Chao and Gao, Di",
+      "journal": "Demo Energy Letters",
+      "year": "2020",
+      "volume": "4",
+      "number": "2",
+      "pages": "88-101",
+      "doi": "10.1000/demo.2020.042"
+    }
+  }
+]

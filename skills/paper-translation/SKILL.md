@@ -19,7 +19,7 @@ description: "Translate a supplied scientific paper into paragraph-aligned bilin
 
 1. 从任务确定源语、目标语及全文/范围；分割标题、正文、图注、表头、公式和脚注，跨页段落保留两端锚点。先写稳定的 `segments` 清单再开始翻译；每个单元有 `id, source, locator`。双栏 PDF 可调用 `layout.py`，用图像抽查跨栏和末页。
 2. 仅锁定领域上有歧义或反复出现的词。术语表记录 `source,target`、首次定位和必要的语境例外。缩写首现保留全称，后续统一。保留数值/范围/单位/否定/不确定措辞/引用/公式，按任务允许的目标格式调整表面排版；位数、符号和效应方向需一致。
-3. 按章节或自然段批处理。用相邻上、下文处理指代；保留原始 IDs，一段对应一译，题注和表头单独对齐。译文须完整并能直接使用，模糊项单列，不能用概述代替。一篇长文先完成要求的高优先级部分并增量保存，回填剩余段落，清点整段覆盖。
+3. 按章节或自然段批处理。术语按段下发：每批翻译前运行 `python "$S/route.py" /app/work/source.md /app/work/glossary.csv /app/work/routes.json`，只把该段 `glossary` 里的条目注入请求，不要整表粘贴，`overflow` 大于 0 时先核对术语表再决定保留项。译文按 `S001<TAB>译文` 写入 targets 文件后加 `--targets` 复跑，`missing_target` 列出的术语必须逐段回查，`summary.missing_targets` 非 0 时不得当作完成。用相邻上、下文处理指代；保留原始 IDs，一段对应一译，题注和表头单独对齐。译文须完整并能直接使用，模糊项单列，不能用概述代替。一篇长文先完成要求的高优先级部分并增量保存，回填剩余段落，清点整段覆盖。
 4. 生成 `{segments:[{id,source,locator}],aligned:[{id,target}],glossary:[{source,target}]}`，运行 `python "$S/structured.py" translation /app/work/alignment.json /app/work/qa.json`。修正漏段及未授权的数值、引用和术语变化。其 core 比较机械保护数值及其单位、百分比和公式，不做等价单位换算，也不验证因果、否定或情态语义。工具只报候选：合法全角/单位译法、交叉引用本地化、脚标排版需自己复核；另逐段复核语义、代词和科学关系。
 
 输出可编辑的段号对照文本、术语表和具体疑点；以 case 字段、格式和命名为准。示例（非赛例）：段 `S01` 译前后的 `3.2%` 必须保持，若工具检测到 `32%`，先回原文核对再交付。

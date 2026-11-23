@@ -20,7 +20,8 @@ description: "Turn a research paper into section-aligned structured notes with p
 1. 建立原文章节树，记录引言/方法/结果/讨论实际顺序，区分正文、附录、补充材料，不套 IMRaD 标题。先提取问题、设计和体系，再逐节找结果、局限和证据，记录物理页、节/段、对应图表、最小原文短引。
 2. 每条笔记用谓词表达，保留条件、对象、指标、分母、比较组、方向和不确定性。区分作者直接测量、作者解释、外部工作和你的推断。摘要中每个结果要回查正文或表格；冲突并列报告，不能用摘要抹平。原文未报告局限时注明，自己的评议单独标明。
 3. 先输出顺着原文章节可阅读的笔记，再生成问题/数据/方法/发现/局限检索索引。可复用笔记至少包含 `id,section_id,category,claim,evidence:[{file,locator,quote}]`。用 `python "$S/structured.py" notes /app/work/notes-model.json /app/work/notes-index.json` 验证，输入为 `{sections:[{id,title}],notes:[...],required_categories:[...]}`。每个规定类别的缺口标明是原文缺失还是抽取缺失，正文附上 `section_order` 对应。
-4. 依实际题目交付结构化 JSON 与可阅读笔记。若要横向比较，将不同数据集、条件或指标的条目保持分列，禁止跨条件计算增幅。
+4. 交付前运行 `python "$S/anchors.py" /app/work/notes.json <source.md> /app/work/anchors.json` 核对原文锚点：输入为 `{notes:[{id,file,claim,quote,start,end}]}`，逐条按空白归一化比较 `source[start:end]` 与 `quote`。区间缺失时只在原文唯一命中处补全，重复命中记为 ambiguous，找不到记为 unsupported；不得改写引文或凭印象补位置，unsupported 条目按实报告并说明缺口，只有 anchored/repaired 才算有锚点。
+5. 依实际题目交付结构化 JSON 与可阅读笔记。若要横向比较，将不同数据集、条件或指标的条目保持分列，禁止跨条件计算增幅。
 
 示例（非赛例）：方法节说明只观测晴天，结果条目和摘要都带“晴天条件”及方法页定位。
 

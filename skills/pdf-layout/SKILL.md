@@ -34,6 +34,10 @@ description: "Parse a scholarly PDF into structured text with reading order, sec
 
 `input_sha256` 仅对应导出 JSON；`origin` 未验证，不将其 binary_hash 当成原 PDF 的 SHA256。接入检索时 manifest 使用 `{"file":"docling.json","layout":"docling-layout.json"}`，证据来源是 JSON 导出件，必须另行回读原 PDF。图片不加载，表单集合不支持。
 
+## 交付前完整性检查
+
+版面 JSON 交付前运行 `python "$S/layout_qa.py" /app/work/layout.json /app/output/verification/layout-qa.json --pages <覆盖页数>`，按元素核对页码、bbox、页内阅读顺序、表格网格、重复 id 和空文本，原生抽取与 Docling 导出件同样适用。`summary.fail` 非零时逐项修复，并按 `issues` 中的元素 id 回查原页，不得用删页、删元素或静默丢弃未定位内容来换取通过。确实无法定位或无法补全的内容按原样保留，交付时列出对应 fail 项、页码和原因，不把未覆盖页当作已完成。
+
 ## 本地证据检索（按需）
 
 默认直接读原件或用 `core.py search` 按行定位。需要按页、按来源过滤或复用片段锚点时，再用可选 BM25。

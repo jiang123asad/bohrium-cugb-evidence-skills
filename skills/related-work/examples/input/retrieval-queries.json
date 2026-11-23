@@ -1,0 +1,6 @@
+{
+  "queries": [
+    {"id": "Q1", "query": "cross-region validation", "files": ["source.txt"]},
+    {"id": "Q2", "query": "quasarxyz"}
+  ]
+}

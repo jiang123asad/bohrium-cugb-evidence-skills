@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "id": "demoA",
+      "type": "article",
+      "fields": {
+        "title": "A {Demo} Study of Yield",
+        "journal": "Journal of Demo",
+        "year": "2025",
+        "doi": "10.1234/demo.2025.001"
+      },
+      "persons": {
+        "author": [
+          "Author, Alice",
+          "Author, Bob"
+        ]
+      }
+    },
+    {
+      "id": "demoB",
+      "type": "article",
+      "fields": {
+        "title": "Remote Sensing Revisited",
+        "journal": "Demo Letters",
+        "year": "2026",
+        "doi": "10.1234/demo.2026.002"
+      },
+      "persons": {
+        "author": [
+          "Writer, Carol"
+        ]
+      }
+    }
+  ],
+  "same_doi_candidates": {}
+}
