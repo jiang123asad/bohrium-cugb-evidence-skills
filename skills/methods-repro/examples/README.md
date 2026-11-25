@@ -3,7 +3,7 @@
 输入：`input/facts.json`，同一运行 r1 的 learning_rate 在 config.yaml 为 0.01、train.log 为 0.005。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/structured.py" reconcile examples/input/facts.json conflicts.json
 ```
 

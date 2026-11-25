@@ -76,7 +76,7 @@ def build(root, main, output, work, engine, build_base='root', require_resolved=
     signals=re.compile(r'(^!|:\d+:\s|LaTeX Warning|Package .* Warning|overfull|underfull|undefined|missing|rerun|fatal|No compatible|timed out)',re.I)
     for i,line in enumerate(trace.splitlines(),1):
         if signals.search(line): records.append({'log_line':i,'message':line})
-    (output/'compile-report.txt').write_text(trace,encoding='utf-8')
+    (output/'compile.log').write_text(trace,encoding='utf-8')
     ok=(output/'compiled.pdf').is_file()
     final_log=trace.rsplit('--- TeX log ---',1)[-1]
     unresolved=bool(re.search(
@@ -88,7 +88,7 @@ def build(root, main, output, work, engine, build_base='root', require_resolved=
             'diagnostics':records,'input_sha256':manifest,'build_base':build_base,
             'compiled_sha256':hashlib.sha256((output/'compiled.pdf').read_bytes()).hexdigest() if ok else None,
             'unresolved_final_log':unresolved,'strict_reference_check':require_resolved,
-            'artifacts':['compile-report.json','compile-report.txt']+(['compiled.pdf'] if ok else [])}
+            'artifacts':['compile-report.json','compile.log']+(['compiled.pdf'] if ok else [])}
     save(output/'compile-report.json',report)
     return ok and (not require_resolved or not unresolved)
 

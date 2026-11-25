@@ -34,10 +34,6 @@ description: "Parse a scholarly PDF into structured text with reading order, sec
 
 `input_sha256` 仅对应导出 JSON；`origin` 未验证，不将其 binary_hash 当成原 PDF 的 SHA256。接入检索时 manifest 使用 `{"file":"docling.json","layout":"docling-layout.json"}`，证据来源是 JSON 导出件，必须另行回读原 PDF。图片不加载，表单集合不支持。
 
-## 交付前完整性检查
-
-版面 JSON 交付前运行 `python "$S/layout_qa.py" /app/work/layout.json /app/output/verification/layout-qa.json --pages <覆盖页数>`，按元素核对页码、bbox、页内阅读顺序、表格网格、重复 id 和空文本，原生抽取与 Docling 导出件同样适用。`summary.fail` 非零时逐项修复，并按 `issues` 中的元素 id 回查原页，不得用删页、删元素或静默丢弃未定位内容来换取通过。确实无法定位或无法补全的内容按原样保留，交付时列出对应 fail 项、页码和原因，不把未覆盖页当作已完成。
-
 ## 本地证据检索（按需）
 
 默认直接读原件或用 `core.py search` 按行定位。需要按页、按来源过滤或复用片段锚点时，再用可选 BM25。
@@ -65,6 +61,14 @@ python "$S/evidence.py" verify /input /app/work/evidence-index.json /app/work/ev
 ## 最小示例
 
 `examples/` 含一组非赛例的输入、调用命令与实际输出（README 标注为示例），供理解接口与独立复核；赛场时间紧时不必复跑，直接按任务流程处理正式材料。
+
+## 异常与降级处理
+
+- 超长文档或超预算：按页段分批抽取，先交已覆盖页与版面索引，列出未处理页段。
+- 非中文 PDF：按实际字形抽取，不假定字符编码；连字与全角符号保留原样并记录。
+- 加密或权限受限：记录 `read_denied/encrypted`，不尝试破解，用可读页产出并标 partial。
+- 版面歧义（跨页表、旋转页、脚注混排）：保留原坐标与备选归页，标注待核，不强行归位。
+- 工具失败：保留失败命令与退出码，回退逐页人工核对并明示未执行的自动检查。
 
 ## 适用范围与限制
 

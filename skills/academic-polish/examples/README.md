@@ -3,7 +3,7 @@
 输入：`input/before.txt` 与 `input/after.txt`；润色把 “may decline” 改为 “may decrease”，保留 may 与 5%。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/core.py" compare examples/input/before.txt examples/input/after.txt
 ```
 

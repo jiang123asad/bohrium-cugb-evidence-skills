@@ -3,7 +3,7 @@
 输入：`input/source.txt`（两行来源文本）与 `input/quotes.json`（两条引文：一条真实、一条篡改）。
 
 ```bash
-S=/skills/weekly-skill/scripts
+S=./scripts # 在本 Skill 根目录运行
 python "$S/core.py" quotes examples/input examples/input/quotes.json
 ```
 

@@ -1,5 +1,0 @@
-This is a separate synthetic study.
-The methods are compared on a toy task.
-No external data were used.
-Method details follow.
-Ridge Fusion (RF) is proposed.

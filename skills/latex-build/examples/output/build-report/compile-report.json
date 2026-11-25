@@ -29,7 +29,7 @@
   "strict_reference_check": true,
   "artifacts": [
     "compile-report.json",
-    "compile.log",
+    "compile.log.txt",
     "compiled.pdf"
   ]
 }

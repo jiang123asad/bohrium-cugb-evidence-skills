@@ -20,8 +20,7 @@ description: "Build an evidence-backed scholarly knowledge graph: typed entities
 1. 先读 case 指定查询、领域、材料和图式。列出能回答问题的最小节点类型和有向关系词汇；边要可写成 subject–predicate–object。区别 measure/compare/use/improve 等谓词，禁止凭共现、综述转述、题名相似或背景常识建实证边。
 2. 第一轮逐篇建 mention，保留 file/locator/quote、作者角色、作用条件。第二轮才对齐实体：显式别名、论文内展开缩写、相同稳定 ID 是强依据；同名、同缩写而定义/单位/任务不同保留独立 IDs，版本仅在证据允许时建立关联。输出合并依据和有歧义的候选。
 3. 在工作文件中用顶层 `{nodes:[...],edges:[...]}`，每个节点 `{id,label,type,aliases,evidence:[{file,locator,quote}]}`，每条边 `{id,source,predicate,target,evidence:[...],qualifiers,certainty}`。可选顶层 `queries:[{id,source?,target?,predicate?,qualifiers?}]`：source/target 取节点 ID 或别名，至少提供 source/target/predicate 之一。同一关系的不同数据集、比较基线和版本应可区分；定量变化把值、单位、方向、环境、是否显著写进限定字段。以任务导出格式为准；`python "$S/structured.py" graph /app/work/model.json /app/work/graph-index.json` 检查端点、重复 ID、别名歧义和证据，生成邻接索引并执行所给查询。
-4. 抽取完成后运行 `python "$S/glean.py" /app/work/model.json 原件.md /app/work/glean.json --rounds 2` 做关系覆盖检查：逐条确认证据句确实出现在该原件中，并补抽同句出现但尚未建边的实体对。`unsupported` 的关系要删除，不能留在图里充数；一次只查一个原件，跨文件的边按其对应原件另查。`candidate` 只是带原句和两端实体 ID 的待审候选，必须人工确认后才能写入图谱。
-5. 单边查询按端点、predicate 和 qualifiers 匹配。若要求证据链，另可输入 `{id,source,path:[{predicate,qualifiers?}, ...]}`，path 为 2–4 个按顺序的有向关系。结果列出实际经过的节点、边和逐跳原文证据；歧义返回候选，达到搜索上限会标明截断，无匹配不代表原材料中不存在关系。链只能说明这些边能连接，不能推出新事实或因果。任务要求 GraphML/RDF/CSV 时按契约导出并回读。
+4. 单边查询按端点、predicate 和 qualifiers 匹配。若要求证据链，另可输入 `{id,source,path:[{predicate,qualifiers?}, ...]}`，path 为 2–4 个按顺序的有向关系。结果列出实际经过的节点、边和逐跳原文证据；歧义返回候选，达到搜索上限会标明截断，无匹配不代表原材料中不存在关系。链只能说明这些边能连接，不能推出新事实或因果。任务要求 GraphML/RDF/CSV 时按契约导出并回读。
 
 示例（非赛例）：两论文把 “RF” 分别用于不同方法，索引返回两个候选，不把它们的结果接成同一条边。
 
@@ -60,6 +59,15 @@ python "$S/evidence.py" verify /input /app/work/evidence-index.json /app/work/ev
 ## 最小示例
 
 `examples/` 含一组非赛例的输入、调用命令与实际输出（README 标注为示例），供理解接口与独立复核；赛场时间紧时不必复跑，直接按任务流程处理正式材料。
+
+## 异常与降级处理
+
+- 加密或权限受限材料：记录 `read_denied`，基于可读部分建图并标 partial。
+- 非中文论文：实体标签保留原文并登记别名，跨语言映射另列。
+- 超长或超预算：先建核心实体与证据边，再扩展；列出未覆盖查询。
+- 双栏错序：先修正阅读顺序再抽边，顺序存疑处不建强边。
+- 证据不足：不建实证边，候选单列并附原句。
+- 工具失败：明示未执行的图校验，保留中间模型供复核。
 
 ## 适用范围与限制
 

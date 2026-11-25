@@ -19,9 +19,8 @@ description: "Edit and compile a scholarly LaTeX project with real multi-round b
 
 1. 从任务、模板和工程确定主文件、预期引擎、目标改动、bib 后端和校样。先把完整可编辑工程安全复制到 work，保留作者模板、图、引用和子文件。若只是片段，按给定模板做独立预览，片段单列。不要为了编译通过删参考文献、公式、非 ASCII、标签或模板必填项。
 2. 用 `python "$S/texcheck.py" <源工程> <项目内主文件> /app/work/build-report /app/work/compile --engine <pdflatex|xelatex|lualatex> --build-base <root|entry>` 建立真实基线。build-base 默认 root，从工程根目录编译；仅明确资源路径相对入口目录时用 entry。脚本优先 latexmk，部分环境用缓存的 Tectonic；禁 shell escape，避免执行原项目配置脚本。编译前删除隔离副本中的目标旧 PDF，仅接受本次新产物。若平台只提供独立编译工具，用其原生输出；特别的项目有明确合法构建命令时遵从任务，同时记录不同依赖。先定位第一条根因，再改相关源码，最多做三轮针对性修复，每次用新报告目录。必要时用 bibtex/biber 的实际日志查引用。
-3. 每轮编译后运行 `python "$S/logparse.py" <报告目录>/compile-report.txt <报告目录>/log-queue.json --source-root <工程根>`，按 `file:line` 顺序先修 error 再重建，warning 中的未定义引用/文献随下一轮收敛。overfull/underfull 等 box 提示与 error 分开汇报，不当作编译失败，也不要为消警告删内容。输出 `status: clean` 表示本轮日志无诊断，否则按 `next_action` 继续。
-4. 编译成功后读最终日志检查 unresolved cite/ref、字体缺字、overfull 和异常断页。打开实际 PDF 或对相关页渲染成 PNG：查看数学符号、三线表、浮动体编号、题注、目录和引用。修改十几处时，按文件、行和理由汇总，提供有效引擎命令/版本、模板和依赖、可编辑工程及同版本 PDF。`compile-report.json` 记录 `compiled_sha256`（无产物时为 null）；核对日志和输出，禁止把旧 PDF 冒充新编译。
-5. 若环境缺引擎/宏包/字体，交已完成源码和真实报错，并给可复现的后续命令；不得捏造编译状态。非必要不启用下载或外部写入。
+3. 编译成功后读最终日志检查 unresolved cite/ref、字体缺字、overfull 和异常断页。打开实际 PDF 或对相关页渲染成 PNG：查看数学符号、三线表、浮动体编号、题注、目录和引用。修改十几处时，按文件、行和理由汇总，提供有效引擎命令/版本、模板和依赖、可编辑工程及同版本 PDF。`compile-report.json` 记录 `compiled_sha256`（无产物时为 null）；核对日志和输出，禁止把旧 PDF 冒充新编译。
+4. 若环境缺引擎/宏包/字体，交已完成源码和真实报错，并给可复现的后续命令；不得捏造编译状态。非必要不启用下载或外部写入。
 
 示例（非赛例）：`Reference fig:map undefined` 时检查 `\label` 与 `\ref`、多轮后是否消除问题，并查看对应 PDF 页。
 
@@ -30,6 +29,15 @@ description: "Edit and compile a scholarly LaTeX project with real multi-round b
 ## 最小示例
 
 `examples/` 含一组非赛例的输入、调用命令与实际输出（README 标注为示例），供理解接口与独立复核；赛场时间紧时不必复跑，直接按任务流程处理正式材料。
+
+## 异常与降级处理
+
+- 加密或权限受限工程：记录 `read_denied`，只对可读文件编译并在报告中说明。
+- 缺宏包或字体：先尝试预装等价包；仍失败则记录缺失包与受影响命令，给最小替换建议，不伪造编译成功。
+- 超长工程或超时：分章编译，先交已通过部分与日志定位。
+- 中文或非英文排版：缺 CJK 字体时给出可用的 ctex/字体配置并记录实际使用项。
+- 编码错误：统一为 UTF-8 并记录原编码，不静默改字符。
+- 工具失败：保留编译日志，status=failed/partial，并指出最后一个成功步骤。
 
 ## 适用范围与限制
 
